@@ -10,10 +10,11 @@
     height: 50px;
     position: absolute;
 }
-#player{
-    background-color: blue;
-
+#player {
+    background-image: url('pezcao.jpg'); 
+    background-size: cover; 
 }
+
 #cookie{
     background-image: url(cooke.JPG);
     background-size: cover;
