@@ -1,21 +1,33 @@
-#game-area{
+/* Área de juego */
+#game-area {
     width: 500px;
     height: 500px;
     position: relative;
     background-color: gray;
     border: 2px solid #000;
+    overflow: hidden; /* Evita que los elementos se salgan del área */
 }
-.character{
+
+/* Ajustar el tamaño en pantallas más pequeñas */
+@media (max-width: 600px) {
+    #game-area {
+        width: 90vw;
+        height: 90vw;
+    }
+}
+
+.character {
     width: 50px;
     height: 50px;
     position: absolute;
 }
+
 #player {
-    background-image: url('pezcao.jpg'); 
-    background-size: cover; 
+    background-image: url('pezcao.jpg');
+    background-size: cover;
 }
 
-#cookie{
-    background-image: url(cooke.JPG);
+#cookie {
+    background-image: url('cooke.JPG');
     background-size: cover;
 }
