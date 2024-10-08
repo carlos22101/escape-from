@@ -6,7 +6,7 @@ let playerPosition = { x: 100, y: 100 };
 let cookiePosition = { x: 300, y: 300 };
 
 const playerSpeed = 65;
-const touchSpeed = 4.5;
+const touchSpeed = 6;
 
 window.addEventListener('keydown', (event) => {
     switch (event.key) {
