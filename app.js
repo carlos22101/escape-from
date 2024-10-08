@@ -6,7 +6,7 @@ let playerPosition = { x: 100, y: 100 };
 let cookiePosition = { x: 300, y: 300 };
 
 const playerSpeed = 65;
-const touchSpeed = 6;
+const touchSpeed = 7;
 
 window.addEventListener('keydown', (event) => {
     switch (event.key) {
@@ -26,7 +26,7 @@ window.addEventListener('keydown', (event) => {
     updatePosition();
 });
 
-const cookieSpeed = 2;
+const cookieSpeed = 1.5;
 
 function moveCookie() {
     if (cookiePosition.x < playerPosition.x) {
