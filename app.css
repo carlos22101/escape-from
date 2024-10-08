@@ -1,20 +1,26 @@
-/* Estilos generales */
-body, html {
-    margin: 0; /* Elimina el margen por defecto */
-    padding: 0; /* Elimina el padding por defecto */
-    overflow: hidden; /* Evita el desplazamiento de la página */
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
 }
 
-/* Área de juego en escritorio */
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
 #game-area {
-    width: 500px; /* Mantiene el ancho original en escritorio */
-    height: 500px; /* Mantiene la altura original en escritorio */
+    width: 500px;
+    height: 500px;
     position: relative;
     background-color: gray;
     border: 2px solid #000;
 }
 
-/* Ajustes para personajes */
 .character {
     width: 50px;
     height: 50px;
@@ -22,23 +28,23 @@ body, html {
 }
 
 #player {
-    background-image: url('pezcao.jpg');
+    background-image: url(pezcao.jpg);
     background-size: cover;
 }
 
 #cookie {
-    background-image: url('cooke.JPG');
+    background-image: url(cooke.JPG);
     background-size: cover;
 }
 
-/* Ajustes para pantallas pequeñas, como iPhones */
 @media (max-width: 600px) {
     body, html {
-        overflow: hidden; /* Evita el desplazamiento en móviles */
+        overflow: hidden;
     }
     
     #game-area {
-        width: 100vw; /* Usa el ancho completo del viewport en móviles */
-        height: 100vh; /* Usa la altura completa del viewport en móviles */
+        width: 100vw;
+        height: 90vh;
+        position: relative;
     }
 }

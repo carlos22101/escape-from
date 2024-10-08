@@ -5,7 +5,8 @@ const gamearea = document.getElementById("game-area");
 let playerPosition = { x: 100, y: 100 };
 let cookiePosition = { x: 300, y: 300 };
 
-const playerSpeed = 40;
+const playerSpeed = 65;
+const touchSpeed = 4.5;
 
 window.addEventListener('keydown', (event) => {
     switch (event.key) {
@@ -25,7 +26,7 @@ window.addEventListener('keydown', (event) => {
     updatePosition();
 });
 
-const cookieSpeed = 1;
+const cookieSpeed = 2;
 
 function moveCookie() {
     if (cookiePosition.x < playerPosition.x) {
@@ -78,15 +79,15 @@ window.addEventListener('touchmove', (event) => {
 
     if (Math.abs(deltaX) > Math.abs(deltaY)) {
         if (deltaX > 0) {
-            if (playerPosition.x < gamearea.clientWidth - 50) playerPosition.x += playerSpeed;
+            if (playerPosition.x < gamearea.clientWidth - 50) playerPosition.x += touchSpeed;
         } else {
-            if (playerPosition.x > 0) playerPosition.x -= playerSpeed;
+            if (playerPosition.x > 0) playerPosition.x -= touchSpeed;
         }
     } else {
         if (deltaY > 0) {
-            if (playerPosition.y < gamearea.clientHeight - 50) playerPosition.y += playerSpeed;
+            if (playerPosition.y < gamearea.clientHeight - 50) playerPosition.y += touchSpeed;
         } else {
-            if (playerPosition.y > 0) playerPosition.y -= playerSpeed;
+            if (playerPosition.y > 0) playerPosition.y -= touchSpeed;
         }
     }
     
