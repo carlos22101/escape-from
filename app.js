@@ -6,13 +6,6 @@ let playerPosition = { x: 100, y: 100 };
 let cookiePosition = { x: 300, y: 300 };
 
 const playerSpeed = 40;
-const touchThreshold = 50; 
-
-
-gamearea.addEventListener('touchmove', (event) => {
-    event.preventDefault();
-}, { passive: false });
-
 
 window.addEventListener('keydown', (event) => {
     switch (event.key) {
@@ -32,51 +25,6 @@ window.addEventListener('keydown', (event) => {
     updatePosition();
 });
 
-
-let touchStartX = 0;
-let touchStartY = 0;
-let touchEndX = 0;
-let touchEndY = 0;
-
-
-gamearea.addEventListener('touchstart', (event) => {
-    const touch = event.touches[0];
-    touchStartX = touch.clientX;
-    touchStartY = touch.clientY;
-});
-
-
-gamearea.addEventListener('touchend', (event) => {
-    touchEndX = event.changedTouches[0].clientX;
-    touchEndY = event.changedTouches[0].clientY;
-    handleTouchMove();
-});
-
-function handleTouchMove() {
-    const diffX = touchEndX - touchStartX;
-    const diffY = touchEndY - touchStartY;
-
-   
-    if (Math.abs(diffX) > Math.abs(diffY)) {
-      
-        if (diffX > touchThreshold && playerPosition.x < gamearea.clientWidth - 50) {
-            playerPosition.x += playerSpeed;
-        } else if (diffX < -touchThreshold && playerPosition.x > 0) {
-            playerPosition.x -= playerSpeed;
-        }
-    } else {
-        
-        if (diffY > touchThreshold && playerPosition.y < gamearea.clientHeight - 50) {
-            playerPosition.y += playerSpeed;
-        } else if (diffY < -touchThreshold && playerPosition.y > 0) {
-            playerPosition.y -= playerSpeed;
-        }
-    }
-
-    updatePosition();
-}
-
-
 const cookieSpeed = 1;
 
 function moveCookie() {
@@ -85,37 +33,62 @@ function moveCookie() {
     } else if (cookiePosition.x > playerPosition.x) {
         cookiePosition.x -= cookieSpeed;
     }
-
     if (cookiePosition.y < playerPosition.y) {
         cookiePosition.y += cookieSpeed;
     } else if (cookiePosition.y > playerPosition.y) {
         cookiePosition.y -= cookieSpeed;
     }
-
     updatePosition();
     checkCollision();
 }
-
 
 function updatePosition() {
     player.style.transform = `translate(${playerPosition.x}px, ${playerPosition.y}px)`;
     cookie.style.transform = `translate(${cookiePosition.x}px, ${cookiePosition.y}px)`;
 }
 
-
 function checkCollision() {
     if (Math.abs(playerPosition.x - cookiePosition.x) < 50 &&
         Math.abs(playerPosition.y - cookiePosition.y) < 50) {
-        alert('¡La cookie te atrapó!');
+        alert('Cookie te atrapó');
         playerPosition = { x: 100, y: 100 };
         cookiePosition = { x: 300, y: 300 };
     }
 }
 
-
 function gameLoop() {
     moveCookie();
     requestAnimationFrame(gameLoop);
 }
-
 gameLoop();
+
+let touchStartX, touchStartY;
+
+window.addEventListener('touchstart', (event) => {
+    touchStartX = event.touches[0].clientX;
+    touchStartY = event.touches[0].clientY;
+});
+
+window.addEventListener('touchmove', (event) => {
+    const touchEndX = event.touches[0].clientX;
+    const touchEndY = event.touches[0].clientY;
+
+    const deltaX = touchEndX - touchStartX;
+    const deltaY = touchEndY - touchStartY;
+
+    if (Math.abs(deltaX) > Math.abs(deltaY)) {
+        if (deltaX > 0) {
+            if (playerPosition.x < gamearea.clientWidth - 50) playerPosition.x += playerSpeed;
+        } else {
+            if (playerPosition.x > 0) playerPosition.x -= playerSpeed;
+        }
+    } else {
+        if (deltaY > 0) {
+            if (playerPosition.y < gamearea.clientHeight - 50) playerPosition.y += playerSpeed;
+        } else {
+            if (playerPosition.y > 0) playerPosition.y -= playerSpeed;
+        }
+    }
+    
+    updatePosition();
+});

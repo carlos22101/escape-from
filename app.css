@@ -1,21 +1,20 @@
-/* Área de juego */
+/* Estilos generales */
+body, html {
+    margin: 0; /* Elimina el margen por defecto */
+    padding: 0; /* Elimina el padding por defecto */
+    overflow: hidden; /* Evita el desplazamiento de la página */
+}
+
+/* Área de juego en escritorio */
 #game-area {
-    width: 500px;
-    height: 500px;
+    width: 500px; /* Mantiene el ancho original en escritorio */
+    height: 500px; /* Mantiene la altura original en escritorio */
     position: relative;
     background-color: gray;
     border: 2px solid #000;
-    overflow: hidden; /* Evita que los elementos se salgan del área */
 }
 
-/* Ajustar el tamaño en pantallas más pequeñas */
-@media (max-width: 600px) {
-    #game-area {
-        width: 90vw;
-        height: 90vw;
-    }
-}
-
+/* Ajustes para personajes */
 .character {
     width: 50px;
     height: 50px;
@@ -30,4 +29,16 @@
 #cookie {
     background-image: url('cooke.JPG');
     background-size: cover;
+}
+
+/* Ajustes para pantallas pequeñas, como iPhones */
+@media (max-width: 600px) {
+    body, html {
+        overflow: hidden; /* Evita el desplazamiento en móviles */
+    }
+    
+    #game-area {
+        width: 100vw; /* Usa el ancho completo del viewport en móviles */
+        height: 100vh; /* Usa la altura completa del viewport en móviles */
+    }
 }
